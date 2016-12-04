@@ -1,6 +1,8 @@
 import requests
 import pandas as pd
 from pandas.io.json import json_normalize
+import matplotlib.pyplot as pyplot
+
 r = requests.get('http://www.citibikenyc.com/stations/json');
 
 #data structure
@@ -22,10 +24,11 @@ for station in station_list_data:
 #staion keys: [u'availableDocks', u'totalDocks', u'city', u'altitude', u'stAddress2', u'longitude', u'lastCommunicationTime', u'postalCode', u'statusValue',
 #u'testStation', u'stAddress1', u'stationName', u'landMark', u'latitude', u'statusKey', u'availableBikes', u'id', u'location']
 
-#these are identical dataframes!
+#makes a dataframe from json data
 df1 = json_normalize(r.json()['stationBeanList'])
 df2 = pd.DataFrame(station_list_data)
 
+## these are identical dataframes as established by code below
 # print 'Rows: ', df1.shape[0]
 # print 'Columns: ', df1.shape[1]
 # for x in range(10):
@@ -34,4 +37,5 @@ df2 = pd.DataFrame(station_list_data)
 
 #pd.DataFrame({'rainy': [.4, .7], 'sunny' : [.6, .3]} , index=['rainy', 'sunny']);
 
-#you can do len(df)
+df['availableBikes'].hist()
+plt.show()
