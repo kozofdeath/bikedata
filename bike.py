@@ -68,6 +68,6 @@ print count_dict.keys();
 print count_dict['statusValue'];
 print count_dict['statusKey']
 
-
+df.to_csv('citi_bike.csv')
 
 #out_of_service = [t for t in df['lastCommunicationTime']]
